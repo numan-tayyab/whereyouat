@@ -1,0 +1,30 @@
+<div class="span14">
+
+  <div style="margin-top: 35px;">
+    <h2>Users</h2>
+    <table class="table table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>User Name</th>
+        <th>DOB</th>
+        <th>STATUS</th>
+        <th>Last Quote</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @users.each do |user| %>
+          <%# img = Image.find_by_owner_id_and_owner_type(product.id, "Product") %>
+          <% next if user.profile.blank? %>
+          <tr>
+            <!--<td class="link_td"><%#= link_to img.present? ? image_tag(img.snap.url(:thumb)) : product.name, product %></td>-->
+            <td><%= user.profile.user_name %></td>
+            <td><%= user.profile.dob %></td>
+            <td><%= user.profile.status %></td>
+            <td><%= user.statuses.last.status %></td>
+
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

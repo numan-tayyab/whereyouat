@@ -1,0 +1,24 @@
+Form To Create User
+<%= form_tag "/users.json/",:method => "post", "data-type" => :json do %>
+<%= label_tag "asdasd" %>
+<%= email_field_tag "user[email]" , "numan.tayyab@ilsainteractive.com" %>
+<%= submit_tag "asdasd" %>
+<% end %>
+
+
+Form to get users in 40 miles
+<%= form_tag "/services/get_users_in_locality"  do %>
+<%= label_tag "lat" %>
+<%= text_field_tag "lat" , "32.54505" %>
+<%= label_tag "long" %>
+<%= text_field_tag "long" , "74.340683" %>
+<%= submit_tag "submit" %>
+<% end %>
+
+Form to get user profile
+<%= form_tag "/services/view_user_profile"  do %>
+<%= label_tag "user_id" %>
+<%= text_field_tag "user_id" , "2" %>
+
+<%= submit_tag "submit" %>
+<% end %>
