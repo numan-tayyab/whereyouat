@@ -17,6 +17,29 @@ class ServicesController < ApplicationController
       user= User.find(params[:user_id])
       render :json => {:success => "true", :user => user_profile_data(user)}
     else
+      render :json => {:success => "false", :message => "user not found"}
+    end
+  end
+
+  def respond_to_status
+    if params[:status_id].present?
+      user = User.find(params[:user_id])
+      status = Status.find(params[:status_id])
+      user.user_statuses << UserStatus.create!(:user => user, :status => status, :user_response => params[:status])
+      render :json => {:success => "true", :message => "status #{params[:status]}d"}
+    else
+      render :json => {:success => "false", :message => "status not found"}
+    end
+  end
+
+  def user_check_in
+    if params[:lat].present? and params[:long].present?
+      user = User.find(params[:user_id])
+      status = Status.find(params[:status_id])
+      user.user_statuses << UserStatus.create!(:user => user, :status => status, :user_response => params[:status])
+      render :json => {:success => "true", :message => "status #{params[:status]}d"}
+    else
+      render :json => {:success => "false", :message => "status not found"}
     end
   end
 end

@@ -9,6 +9,8 @@
         <th>DOB</th>
         <th>STATUS</th>
         <th>Last Quote</th>
+        <th>Last Quote Likes</th>
+        <th>Last Quote Dislikes</th>
       </tr>
       </thead>
       <tbody>
@@ -21,6 +23,8 @@
             <td><%= user.profile.dob %></td>
             <td><%= user.profile.status %></td>
             <td><%= user.statuses.last.status %></td>
+            <td><%= user.statuses.size > 0 ?  user.statuses.includes(:user_statuses).last.user_statuses.select{|u_s| u_s.user_response.casecmp("like") == 0}.size : "N/A" %></td>
+            <td><%= user.statuses.size > 0 ?  user.statuses.includes(:user_statuses).last.user_statuses.select{|u_s| u_s.user_response.casecmp("dislike") == 0}.size : "N/A" %></td>
 
           </tr>
       <% end %>

@@ -16,7 +16,8 @@ Whereyouat::Application.routes.draw do
   }
   resources :services do
     collection do
-      post :get_users_in_locality, :view_user_profile
+      post :get_users_in_locality, :view_user_profile, :respond_to_status
+      post :user_check_in
     end
   end
 
