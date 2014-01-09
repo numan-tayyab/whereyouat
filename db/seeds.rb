@@ -15,7 +15,7 @@ super_admin.save!
 
 puts "Seeding Users"
 (1..9).each do |id|
-  user = User.new(:email => "user#{id}@whereyouat.com", :is_super_admin => false)
+  user = User.new(:email => "user#{id}@whereyouat.com", :is_super_admin => false, :is_active => true)
   user.profile = Profile.new(:user_name => "user#{id}", :status => "single", :dob => (Date.today - 25.years))
   user.save!
 end
@@ -29,4 +29,9 @@ end
 puts "Seeding Users Quotes"
 User.where(:is_super_admin => false).each do |user|
   user.statuses << Status.create(:status => "I am feeling good Today")
+end
+
+puts "Seeding Status Likes"
+Status.all.each_with_index do |status, i|
+  status.user_statuses << UserStatus.create!(:user => User.find(i+1), :status => status, :user_response => ((i+1).even? ? "like" : "dislike"))
 end
