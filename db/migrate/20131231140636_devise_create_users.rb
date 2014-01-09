@@ -33,7 +33,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
 
       t.boolean :is_active
       t.boolean :is_super_admin
-      t.timestamps
+      t.string :device_token
       t.timestamps
     end
 
